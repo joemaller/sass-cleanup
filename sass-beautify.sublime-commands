@@ -1,0 +1,14 @@
+[
+    {
+        "caption": "Sass: Beautify Selection",
+        "command": "sassify"
+    },
+    {
+        "caption": "Sass: Beautify Keyboard shortcuts",
+        "command": "open",
+        "args": {
+            "file": "${packages}/SassBeautifier/Default (OSX).sublime-keymap",
+            "platform": "OSX"
+        }
+    }
+]
