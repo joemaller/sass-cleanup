@@ -4,7 +4,7 @@ import os
 import re
 from glob import glob
 
-print "loaded Sassify"
+print("loaded Sassify")
 
 # TODO:
 #       get scope/language/global indentation settings
@@ -46,18 +46,18 @@ class SassifyCommand(sublime_plugin.TextCommand):
             if not region.empty():
                 # Get the selected text
                 s = self.view.substr(region)
-                print self.view.sel()
+                print(self.view.sel())
                 # print whole_region
 
-                print "did we get here?"
+                print("did we get here?")
             else:
-                print 'empty region'
+                print('empty region')
                 # try expanding to enclosing brackets
 
                 # run this twice to include brackets. Kludgy hack that totally fails with multiple selections:
                 self.view.run_command("expand_selection", {"to": "brackets"})
                 self.view.run_command("expand_selection", {"to": "brackets"})
-                print self.view.sel()
+                print(self.view.sel())
                 # for region in self.view.sel():
                 #     s = self.view.substr(region)
 
@@ -65,9 +65,8 @@ class SassifyCommand(sublime_plugin.TextCommand):
                 s = self.runSass(s, indentation=self.indentation)
                 # Replace the selection with transformed text
                 self.view.replace(edit, region, s)
-            except Exception, e:
-                print e
-
+            except Exception as e:
+                print(e)
 
                 # TODO capture the current CSS rule by:
                 #       1. look for a bracket in the line, try to exand selection to bracket
@@ -76,9 +75,9 @@ class SassifyCommand(sublime_plugin.TextCommand):
 
     def runSass(self, args, **kwargs):
         indent = kwargs.get('indentation', '    ')  # set default indent value
-        print "indent: %s" % repr(indent)
+        print("indent: %s" % repr(indent))
         sass_convert = subprocess.Popen(
-           # TODO need to make scss conditional based on the current file or scope
+            # TODO need to make scss conditional based on the current file or scope
             # ['sass-convert', '-s', '-F', 'scss', '-T', 'scss', '--trace'],
             ['sass-convert', '-s', '-F', 'scss', '-T', 'scss'],
             stdin=subprocess.PIPE,
@@ -89,10 +88,10 @@ class SassifyCommand(sublime_plugin.TextCommand):
         if not sass_converted[0]:
             # there was an error
             # TODO handle this better
-            print sass_converted[1]
+            print(sass_converted[1])
             return False
         sass_converted = sass_converted[0]
-
+        return sass_converted  # bail out here
         # TODO: make this replacement conditional based on a preference:
         sass_converted = self.bracket_outdenter(sass_converted)
 
@@ -111,7 +110,7 @@ class SassifyCommand(sublime_plugin.TextCommand):
         bracket_regex = r'^(?P<rule>(?P<indent> *)[^}\n]+)(?P<brackets>(?: \})+)$'
         bracket_regex = re.compile(bracket_regex, re.M)
         code = bracket_regex.sub(lambda m: "%s\n%s" % (
-                            m.group('rule'),
-                            ''.join([m.group('indent')[i * 2:-2] + '}\n' for i in range(len(m.group('brackets').split()))])),
-                        code)
+            m.group('rule'),
+            ''.join([m.group('indent')[i * 2:-2] + '}\n' for i in range(len(m.group('brackets').split()))])),
+            code)
         return code.rstrip()
