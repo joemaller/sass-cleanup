@@ -1,3 +1,8 @@
+This works but is not quite ready for release. It's only up here now because I needed access to the files remotely.
+
+## Sassify or SassBeautifier or Sass and CSS Cleanup
+I haven't decided on a name yet. More on this later. 
+
 ### What about CSS?
 
 There are a couple options. First, since Sass's SCSS syntax is a strict super-set of css, all normal CSS files can be beautified just like SCSS. 
