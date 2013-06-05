@@ -1,0 +1,23 @@
+[
+    {
+        "caption": "Sass: Beautify Selection",
+        "command": "sass_convert"
+    },
+    {
+        "caption": "SCSS (Sass): Beautify Selection",
+        "command": "sass_convert"
+    },
+    {
+        "caption": "CSS: Beautify Selection",
+        "command": "sass_convert"
+    },
+    {
+        "caption": "CSS: Expand Selection To Rule",
+        "command": "expand_selection_to_css_rule"
+    },
+    {
+        "caption": "CSS: Compact Rule",
+        "command": "sass_compile_compact"
+    }
+
+]
