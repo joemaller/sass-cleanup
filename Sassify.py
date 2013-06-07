@@ -29,6 +29,7 @@ print("loaded Sassify")
 #
 
 APP_NAME = "Sass Beautifier"
+SASS_BIN_DIR = '/usr/bin/'
 
 def plugin_loaded():
     global APP_NAME, SASS_BIN_DIR, SETTINGS
