@@ -10,7 +10,7 @@ import re
 
 from . sass_compile_wrapper import sass_compile
 from . sass_convert_wrapper import sass_convert
-from . sass_extractor import extract_sass_binaries
+from . sass_installer import SassInstaller
 
 
 print("loaded Sassify")
@@ -28,13 +28,13 @@ print("loaded Sassify")
 #          output from sass instead of sass-convert
 #
 
+APP_NAME = "Sass Beautifier"
 
 def plugin_loaded():
     global APP_NAME, SASS_BIN_DIR, SETTINGS
     print('*************************PLUGIN_LOADED*******************')
     SETTINGS = sublime.load_settings('Sassify.sublime-settings')
 
-    APP_NAME = "Sass Beautifier"
     # SASS_BIN_DIR = os.path.join(
     #     os.path.dirname(os.path.abspath(__file__)),
     #     'lib', 'sass', 'bin')
@@ -55,22 +55,30 @@ def plugin_loaded():
     print("sublime.installed_packages_path())\n",
           sublime.installed_packages_path())
 
-    amiazip = os.path.splitext(os.path.dirname(__file__))[1] in ['.sublime-package']
-    print("amiazip:", amiazip)
+    # amiazip = os.path.splitext(os.path.dirname(__file__))[1] in ['.sublime-package']
+    # print("amiazip:", amiazip)
 
     # TODO: Clean this mess up
     # TODO: Check for existing sass version to see if we need an update
-    if amiazip:
-        libdir = extract_sass_binaries(packages_dir=sublime.installed_packages_path())
-        SASS_BIN_DIR = libdir
-    else:
-        SASS_BIN_DIR = os.path.dirname(os.path.abspath(__file__))
+    # if amiazip:
+        # libdir = extract_sass_binaries(packages_dir=sublime.installed_packages_path())
+        # SASS_BIN_DIR = libdir
+    # else:
+    # SASS_BIN_DIR = os.path.join(
+    #     os.path.dirname(os.path.abspath(__file__)),
+    #     'Sassify_lib', 'sass-stable', 'bin')
+
+    # # SASS_BIN_DIR = os.path.join(SASS_BIN_DIR, 'Sassify_lib', 'sass-stable', 'bin')
+    # SASS_BIN_DIR = SETTINGS.get('sass_bin_dir', SASS_BIN_DIR)
+    # print("SASS_BIN_DIR\n", SASS_BIN_DIR)
+
+    # Initialize the Sass Installer
+    sass = SassInstaller(sublime.installed_packages_path())
+    sass.make_it_work()
+    SASS_BIN_DIR = sass.bindir
 
 
-    SASS_BIN_DIR = os.path.join(SASS_BIN_DIR, 'lib', 'sass', 'bin')
-    SASS_BIN_DIR = SETTINGS.get('sass_bin_dir', SASS_BIN_DIR)
-    print("SASS_BIN_DIR\n", SASS_BIN_DIR)
-
+# TODO: Add the sass_installer here.
 
 class SassBaseCommand(sublime_plugin.TextCommand):
     def update(self, edit, result):

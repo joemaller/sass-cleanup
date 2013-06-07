@@ -1,6 +1,6 @@
 {
    // "sass_bin_dir": "/usr/bin/",
-    "dasherize": false,
-    "sass_zip": "https://github.com/nex3/sass/archive/stable.zip",
-    "old": false
+   // If true, scss will be preserved in a CSS comment block
+   // when converting to CSS
+    "preserve_scss_in_comment": true,
 }

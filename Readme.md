@@ -1,7 +1,9 @@
-This works but is not quite ready for release. It's only up here now because I needed access to the files remotely.
+This works but is not quite ready for release. It's up here because I needed access to the files remotely and wanted to test Package Control from multiple systems.
+
+If you're seeing this, [I have a few questions](http://www.sublimetext.com/forum/viewtopic.php?f=6&t=12636&p=49386)
 
 ## Sassify or SassBeautifier or Sass and CSS Cleanup
-I haven't decided on a name yet. More on this later. 
+I haven't decided on a name yet.
 
 ### What about CSS?
 
