@@ -3,6 +3,7 @@
 
 import os
 import subprocess
+import platform
 
 
 def sass_compile(args, **kwargs):
@@ -12,6 +13,7 @@ def sass_compile(args, **kwargs):
 
     sass_compile = subprocess.Popen(
         [sass_path, '-s', '--scss', '--style', format],
+        shell=(platform.system().lower() == 'windows'),
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,

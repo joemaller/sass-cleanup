@@ -3,6 +3,7 @@
 
 import os
 import subprocess
+import platform
 
 
 def sass_convert(args, **kwargs):
@@ -21,6 +22,7 @@ def sass_convert(args, **kwargs):
     #   will translates tabs correctly without any nastly fiddling
     sass_convert = subprocess.Popen(
         [sass_path, '-s', '-F', src, '-T', dest, '--indent', indent],
+        shell=(platform.system().lower() == 'windows'),
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
