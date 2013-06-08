@@ -2,5 +2,5 @@
    // "sass_bin_dir": "/usr/bin/",
    // If true, scss will be preserved in a CSS comment block
    // when converting to CSS
-    "preserve_scss_in_comment": true,
+    "preserve_scss_in_comment": true
 }

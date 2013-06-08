@@ -1,3 +1,8 @@
 [
-        { "keys": ["ctrl+alt+shift+f"], "command": "sassify"}
+    { "keys": ["ctrl+alt+shift+f"], "command": "sass_convert", "context":
+        [
+            { "key": "selector", "operator": "equal", "operand": "source.scss, source.css" },
+            { "key": "selector", "operator": "not_equal", "operand": "source.sass" }
+        ]
+    }
 ]
