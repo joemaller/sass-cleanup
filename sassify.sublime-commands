@@ -1,9 +1,5 @@
 [
     {
-        "caption": "Sass: Beautify Selection",
-        "command": "sass_convert"
-    },
-    {
         "caption": "SCSS (Sass): Beautify Selection",
         "command": "sass_convert"
     },
@@ -18,6 +14,10 @@
     {
         "caption": "CSS: Compact Rule",
         "command": "sass_compile_compact"
+    },
+    {
+        "caption": "SCSS: Compile in place",
+        "command": "sass_compile_in_place"
     }
 
 ]
