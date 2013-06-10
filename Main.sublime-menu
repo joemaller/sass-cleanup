@@ -1,13 +1,21 @@
 [
     {
-        "caption": "Preferences",
-        "mnemonic": "n",
+        "id": "selection",
+        "children":
+        [
+            {
+                "command": "expand_selection_to_css_rule",
+                "id": "expand_selection_to_css_rule",
+                "caption": "Expand Selection to CSS Rule"
+            }
+        ]
+
+    },
+    {
         "id": "preferences",
         "children":
         [
             {
-                "caption": "Package Settings",
-                "mnemonic": "P",
                 "id": "package-settings",
                 "children":
                 [
